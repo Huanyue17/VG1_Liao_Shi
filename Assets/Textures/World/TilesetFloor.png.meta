@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -9826,16 +9826,16 @@ TextureImporter:
       TilesetFloor_191: 1402705967
       TilesetFloor_91: -986410353
       TilesetFloor_13: 959201998
-      TilesetFloor_252: -194790327
       TilesetFloor_363: -1896536930
+      TilesetFloor_457: -471414295
       TilesetFloor_443: -1403969425
       TilesetFloor_453: -1738809510
       TilesetFloor_454: -1911274007
       TilesetFloor_88: -893165863
+      TilesetFloor_252: -194790327
       TilesetFloor_353: 767738809
       TilesetFloor_100: 1906571468
       TilesetFloor_142: -1548257121
-      TilesetFloor_457: -471414295
       TilesetFloor_302: 217920231
       TilesetFloor_235: -1030310119
       TilesetFloor_58: -799550895
@@ -9902,11 +9902,11 @@ TextureImporter:
       TilesetFloor_317: -892901347
       TilesetFloor_256: 2061118795
       TilesetFloor_188: -1068637596
+      TilesetFloor_305: -298179904
       TilesetFloor_31: 879908615
       TilesetFloor_39: 1200090096
-      TilesetFloor_305: -298179904
-      TilesetFloor_341: -1479342915
       TilesetFloor_70: 1040497136
+      TilesetFloor_341: -1479342915
       TilesetFloor_419: 2100270532
       TilesetFloor_368: -2090153087
       TilesetFloor_55: -2080453886
@@ -10000,8 +10000,8 @@ TextureImporter:
       TilesetFloor_376: 1971073384
       TilesetFloor_167: -679779656
       TilesetFloor_127: 1804480074
-      TilesetFloor_124: -1111531910
       TilesetFloor_238: -1709782542
+      TilesetFloor_124: -1111531910
       TilesetFloor_225: 362637641
       TilesetFloor_140: -1167213669
       TilesetFloor_183: 1722552
@@ -10031,8 +10031,8 @@ TextureImporter:
       TilesetFloor_195: -1950774866
       TilesetFloor_339: 1405496660
       TilesetFloor_49: 1653200449
-      TilesetFloor_37: -405597877
       TilesetFloor_161: -1620788617
+      TilesetFloor_37: -405597877
       TilesetFloor_336: -1311175429
       TilesetFloor_263: 633364461
       TilesetFloor_254: 1308187466
@@ -10074,9 +10074,9 @@ TextureImporter:
       TilesetFloor_264: 1169022381
       TilesetFloor_41: 271311301
       TilesetFloor_97: -903868839
-      TilesetFloor_356: -1727582846
       TilesetFloor_386: -1340822180
       TilesetFloor_391: -1738476758
+      TilesetFloor_356: -1727582846
       TilesetFloor_253: -810096710
       TilesetFloor_9: 384320578
       TilesetFloor_232: 328876160

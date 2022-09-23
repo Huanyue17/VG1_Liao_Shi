@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -5766,7 +5766,6 @@ TextureImporter:
       TilesetNature_222: -1414137192
       TilesetNature_67: -326198673
       TilesetNature_31: 1788349412
-      TilesetNature_266: 1537292612
       TilesetNature_89: 1907396865
       TilesetNature_228: 1592685226
       TilesetNature_262: -123688204
@@ -5838,9 +5837,9 @@ TextureImporter:
       TilesetNature_186: -1421537793
       TilesetNature_193: 81938927
       TilesetNature_198: 42223816
-      TilesetNature_75: -423051401
-      TilesetNature_173: 872042464
       TilesetNature_232: 1510253359
+      TilesetNature_173: 872042464
+      TilesetNature_75: -423051401
       TilesetNature_243: 17117253
       TilesetNature_133: 1759922071
       TilesetNature_3: -349025424
@@ -5886,13 +5885,13 @@ TextureImporter:
       TilesetNature_140: -9061362
       TilesetNature_129: -1353287509
       TilesetNature_16: -1582444594
+      TilesetNature_197: -1258673613
       TilesetNature_15: 1410610198
-      TilesetNature_174: 1476595715
       TilesetNature_34: 2100006231
       TilesetNature_98: -2075547942
       TilesetNature_23: -2135594524
       TilesetNature_239: -1577458156
-      TilesetNature_197: -1258673613
+      TilesetNature_174: 1476595715
       TilesetNature_184: 780881767
       TilesetNature_88: 289328557
       TilesetNature_55: 453543889
@@ -5901,16 +5900,16 @@ TextureImporter:
       TilesetNature_28: 1951179499
       TilesetNature_61: -647614942
       TilesetNature_24: 1232102337
-      TilesetNature_10: -1926608972
-      TilesetNature_156: 199077466
       TilesetNature_37: 1239439426
-      TilesetNature_218: 1583906965
+      TilesetNature_10: -1926608972
+      TilesetNature_53: -345262295
+      TilesetNature_156: 199077466
       TilesetNature_56: -958986943
       TilesetNature_145: 2036863112
       TilesetNature_132: -486548816
       TilesetNature_96: 848736670
-      TilesetNature_53: -345262295
       TilesetNature_247: 1010747048
+      TilesetNature_218: 1583906965
       TilesetNature_220: -1835961382
       TilesetNature_178: 959527104
       TilesetNature_39: 53299112
@@ -6016,6 +6015,7 @@ TextureImporter:
       TilesetNature_165: 81113687
       TilesetNature_134: -1629888690
       TilesetNature_211: 679636226
+      TilesetNature_266: 1537292612
       TilesetNature_12: -898954866
       TilesetNature_8: 623176430
       TilesetNature_60: -1643417388

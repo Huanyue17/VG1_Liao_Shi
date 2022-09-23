@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -13878,6 +13878,7 @@ TextureImporter:
       TilesetHouse_575: 1673317285
       TilesetHouse_359: 1412343091
       TilesetHouse_383: -845152964
+      TilesetHouse_582: -512293102
       TilesetHouse_56: 2080295796
       TilesetHouse_401: -1519492376
       TilesetHouse_551: 719406693
@@ -13891,7 +13892,6 @@ TextureImporter:
       TilesetHouse_619: -400899747
       TilesetHouse_53: -1526096795
       TilesetHouse_643: 1392733818
-      TilesetHouse_582: -512293102
       TilesetHouse_213: 1125109375
       TilesetHouse_205: 1895423467
       TilesetHouse_445: 919253228
@@ -14056,14 +14056,14 @@ TextureImporter:
       TilesetHouse_112: 1151279788
       TilesetHouse_124: -1089284725
       TilesetHouse_236: -304085952
-      TilesetHouse_335: -2143944775
-      TilesetHouse_269: -1077253414
-      TilesetHouse_392: -1835159919
       TilesetHouse_625: 1139099140
+      TilesetHouse_269: -1077253414
+      TilesetHouse_645: -1060209192
+      TilesetHouse_335: -2143944775
+      TilesetHouse_392: -1835159919
       TilesetHouse_98: 1905621698
       TilesetHouse_24: 678935776
       TilesetHouse_632: 1144964616
-      TilesetHouse_645: -1060209192
       TilesetHouse_572: 1607076402
       TilesetHouse_36: -1635991520
       TilesetHouse_216: -2014478343

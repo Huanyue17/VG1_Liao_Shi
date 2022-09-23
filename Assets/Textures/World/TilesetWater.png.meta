@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -5666,6 +5666,7 @@ TextureImporter:
       TilesetWater_96: 1922458806
       TilesetWater_32: -886192209
       TilesetWater_46: -781265367
+      TilesetWater_247: 615137343
       TilesetWater_243: -833828948
       TilesetWater_183: -1784190880
       TilesetWater_128: 1473821530
@@ -5674,16 +5675,15 @@ TextureImporter:
       TilesetWater_256: -1832246544
       TilesetWater_182: 1925233920
       TilesetWater_24: -805695591
-      TilesetWater_247: 615137343
       TilesetWater_167: 100400516
       TilesetWater_61: 1393029848
       TilesetWater_100: -1264107836
       TilesetWater_89: -1786411331
       TilesetWater_225: -1667642500
       TilesetWater_93: 2141899757
-      TilesetWater_48: -1000279514
-      TilesetWater_237: -275322016
       TilesetWater_208: -147812480
+      TilesetWater_237: -275322016
+      TilesetWater_48: -1000279514
       TilesetWater_62: 1352974174
       TilesetWater_251: 1495357360
       TilesetWater_184: -348424201
@@ -5707,8 +5707,8 @@ TextureImporter:
       TilesetWater_147: -1928027871
       TilesetWater_203: -329125015
       TilesetWater_21: 1300212890
-      TilesetWater_176: -1912793506
       TilesetWater_228: 998777999
+      TilesetWater_176: -1912793506
       TilesetWater_91: -485922061
       TilesetWater_144: 599063251
       TilesetWater_109: -1497846147
