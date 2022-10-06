@@ -4,42 +4,58 @@ using UnityEngine;
 namespace level1 {
     public class PlayerMovement : MonoBehaviour {
         // Outlet
-        Rigidbody2D _rigidbody2D;
+        Rigidbody2D _rigidbody;
+        Animator _animator;
 
         // Configuration
         public KeyCode keyUp;
         public KeyCode keyDown;
-        public KeyCode KeyLeft;
-        public KeyCode KeyRight;
+        public KeyCode keyLeft;
+        public KeyCode keyRight;
+        public KeyCode keyAttack;
         public float moveSpeed;
 
 
         void Start() {
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
-        void fixedUpdate() {
+        void FixedUpdate() {
             // Move PLayer Left
-            if (Input.GetKey(KeyLeft)) {
-                _rigidbody2D.AddForce(Vector2.left * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            if (Input.GetKey(keyLeft)) {
+                _rigidbody.AddForce(Vector2.left * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
             }
 
             // Move PLayer Right
-            if (Input.GetKey(KeyRight)) {
-                _rigidbody2D.AddForce(Vector2.right * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            if (Input.GetKey(keyRight)) {
+                _rigidbody.AddForce(Vector2.right * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
             }
 
             // Move PLayer Upward
             if (Input.GetKey(keyUp)) {
-                _rigidbody2D.AddForce(Vector2.up * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                _rigidbody.AddForce(Vector2.up * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
 
             }
 
             // Move PLayer Down
             if (Input.GetKey(keyDown)) {
-                _rigidbody2D.AddForce(Vector2.down * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                _rigidbody.AddForce(Vector2.down * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            }
+        }
+
+        void Update() {
+            float movementSpeed = _rigidbody.velocity.sqrMagnitude;
+            _animator.SetFloat("speed", movementSpeed);
+            if (movementSpeed > 0.1f) {
+                _animator.SetFloat("movementX", _rigidbody.velocity.x);
+                _animator.SetFloat("movementY", _rigidbody.velocity.y);
+            }
+
+            if(Input.GetKeyDown(keyAttack)) {
+                _animator.SetTrigger("attack");
             }
         }
     }

@@ -11,9 +11,15 @@ namespace level1 {
         private float unitMoveTime = 0.5f;
         Animator animator;
 
+        public KeyCode keyUp;
+        public KeyCode keyDown;
+        public KeyCode keyLeft;
+        public KeyCode keyRight;
+        public float moveSpeed;
+
         void Start() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
+            //animator = GetComponent<Animator>();
             isMoving = false;
         }
 
@@ -27,53 +33,54 @@ namespace level1 {
         //     }
         // }
 
+
         void Update() {
             // Move PLayer Upward
-            if (Input.GetKey(KeyCode.W) && !isMoving) {
-                _rigidbody2D.AddForce(Vector2.up * 18f * Time.deltaTime, ForceMode2D.Impulse);
-                // StartCoroutine(MovePlayer(Vector2.up));
-                animator.SetInteger("Direction", 0);
+            if (Input.GetKey(keyUp) && !isMoving) {
+                // _rigidbody2D.AddForce(Vector2.up * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                StartCoroutine(MovePlayer(Vector2.up));
+                //animator.SetInteger("Direction", 0);
             }
 
             // Move PLayer Right
-            if (Input.GetKey(KeyCode.D) && !isMoving) {
-                _rigidbody2D.AddForce(Vector2.right * 18f * Time.deltaTime, ForceMode2D.Impulse);
-                // StartCoroutine(MovePlayer(Vector2.right));
-                animator.SetInteger("Direction", 1);
+            if (Input.GetKey(keyRight) && !isMoving) {
+                // _rigidbody2D.AddForce(Vector2.right * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                StartCoroutine(MovePlayer(Vector2.right));
+                //animator.SetInteger("Direction", 1);
             }
 
             // Move PLayer Down
-            if (Input.GetKey(KeyCode.S) && !isMoving) {
-                _rigidbody2D.AddForce(Vector2.down * 18f * Time.deltaTime, ForceMode2D.Impulse);
-                // StartCoroutine(MovePlayer(Vector2.down));
-                animator.SetInteger("Direction", 2);
+            if (Input.GetKey(keyDown) && !isMoving) {
+                // _rigidbody2D.AddForce(Vector2.down * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                StartCoroutine(MovePlayer(Vector2.down));
+                //animator.SetInteger("Direction", 2);
             }
 
             // Move PLayer Left
-            if (Input.GetKey(KeyCode.A) && !isMoving) {
-                _rigidbody2D.AddForce(Vector2.left * 18f * Time.deltaTime, ForceMode2D.Impulse);
-                // StartCoroutine(MovePlayer(Vector2.left));
-                animator.SetInteger("Direction", 3);
+            if (Input.GetKey(keyLeft) && !isMoving) {
+                // _rigidbody2D.AddForce(Vector2.left * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                StartCoroutine(MovePlayer(Vector2.left));
+                //animator.SetInteger("Direction", 3);
             }
         }
 
-        // private IEnumerator MovePlayer(Vector2 direction) {
-        //     isMoving = true;
-        //     float elapseTime = 0f;
+        private IEnumerator MovePlayer(Vector2 direction) {
+            isMoving = true;
+            float elapseTime = 0f;
 
-        //     origPos = transform.position;
-        //     targetPos = origPos + direction;
+            origPos = transform.position;
+            targetPos = origPos + direction;
 
-        //     while (elapseTime < unitMoveTime) {
-        //         transform.position = Vector2.Lerp(origPos, targetPos, (elapseTime / unitMoveTime));
-        //         elapseTime += Time.deltaTime;
-        //         yield return null;
-        //     }
+            while (elapseTime < unitMoveTime) {
+                transform.position = Vector2.Lerp(origPos, targetPos, (elapseTime / unitMoveTime));
+                elapseTime += Time.deltaTime;
+                yield return null;
+            }
 
-        //     isMoving = false;
-        //     //transform.Translate(direction*speed*Time.deltaTime);
-        //     transform.position = targetPos;
-        // }
+            isMoving = false;
+            //transform.Translate(direction*speed*Time.deltaTime);
+            transform.position = targetPos;
+        }
     }
 }
 
