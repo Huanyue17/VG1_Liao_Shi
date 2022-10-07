@@ -27,6 +27,8 @@ namespace level1 {
             score = 0;
             seconds = 0f;
             minutes = 0f;
+            
+            score = PlayerPrefs.GetInt("Score");
         }
 
         // Update is called once per frame

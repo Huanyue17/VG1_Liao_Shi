@@ -106,6 +106,7 @@ namespace level1 {
                         if(Input.GetKeyDown(keyAttack)) {
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
+                            PlayerPrefs.SetInt("Score", GameScore.instance.score);
                         }
                     }
                     if(rcgl) {
