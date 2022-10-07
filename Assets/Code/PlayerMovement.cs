@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
 namespace level1 {
     public enum Direction {
         Up = 0,
@@ -15,6 +18,9 @@ namespace level1 {
         Animator _animator;
         SpriteRenderer _spriteRenderer;
         public Transform[] attackZones;
+        HealthHeart heart;
+        //public TMP_Text textScore;
+        // public Image imageHealth;
 
         // Configuration
         public KeyCode keyUp;
@@ -27,12 +33,18 @@ namespace level1 {
 
         // Tracking state
         public Direction facingDirection;
+        public int healthMax = 4;
+        public int health = 4;
+        public GameScore instance;
 
 
         void Start() {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            heart = FindObjectOfType<HealthHeart>();
+            instance = FindObjectOfType<GameScore>();
+
         }
 
         // Update is called once per frame
@@ -61,39 +73,71 @@ namespace level1 {
         }
 
         void Update() {
-            float movementSpeed = _rigidbody.velocity.sqrMagnitude;
-            _animator.SetFloat("speed", movementSpeed);
-            if (movementSpeed > 0.1f) {
-                _animator.SetFloat("movementX", _rigidbody.velocity.x);
-                _animator.SetFloat("movementY", _rigidbody.velocity.y);
-            }
+            if (health > 0) {
+                float movementSpeed = _rigidbody.velocity.sqrMagnitude;
+                _animator.SetFloat("speed", movementSpeed);
+                if (movementSpeed > 0.1f) {
+                    _animator.SetFloat("movementX", _rigidbody.velocity.x);
+                    _animator.SetFloat("movementY", _rigidbody.velocity.y);
+                }
 
-            if(Input.GetKeyDown(keyAttack)) {
-                _animator.SetTrigger("attack");
-            }
+                if (Input.GetKeyDown(keyAttack)) {
+                    _animator.SetTrigger("attack");
+                    // TakeDamage(1);
+                }
 
-            // convert the enumeration to an index
-            int facingDirectionIndex = (int)facingDirection;
-            Transform attackZone = attackZones[facingDirectionIndex];
-            Collider2D[] hits = Physics2D.OverlapCircleAll(attackZone.position, 0.1f);
+                // convert the enumeration to an index
+                int facingDirectionIndex = (int)facingDirection;
+                Transform attackZone = attackZones[facingDirectionIndex];
+                Collider2D[] hits = Physics2D.OverlapCircleAll(attackZone.position, 0.1f);
 
-            foreach(Collider2D hit in hits) {
-                obstacleFlower obs = hit.GetComponent<obstacleFlower>();
-                if(obs) {
-                    if(Input.GetKeyDown(keyAttack)) {
-                        obs.Break();
+                foreach (Collider2D hit in hits) {
+                    ObstacleFlower obs = hit.GetComponent<ObstacleFlower>();
+                    RewardFlower rwds = hit.GetComponent<RewardFlower>();
+                    if(obs) {
+                        if(Input.GetKeyDown(keyAttack)) {
+                            obs.Break();
+                        }
+                    }
+                    if(rwds) {
+                        if(Input.GetKeyDown(keyAttack)) {
+                            rwds.Break();
+                            instance.EarnPoints(rwds.rewardS);
+                        }
                     }
                 }
             }
         }
 
         void LateUpdate() {
-            for(int i = 0; i < sprites.Length; i++) {
+            for (int i = 0; i < sprites.Length; i++) {
                 if(_spriteRenderer.sprite == sprites[i]) {
                     facingDirection = (Direction)i;
                     break;
                 }
             }
+        }
+
+        void OnCollisionEnter2D(Collision2D other) {
+            if (other.gameObject.GetComponent<ObstacleFlower>()) {
+                TakeDamage(1);
+            }
+        }
+
+
+        void Die() {
+            _animator.SetTrigger("die");
+            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        void TakeDamage(int damageAmount) {
+            health -= damageAmount;
+            if (health <= 0) {
+                health = 0;
+                Die();
+                Debug.Log("You're dead");
+            }
+            heart.SetHeartImage((HeartStatus)health);
         }
     }
 }
