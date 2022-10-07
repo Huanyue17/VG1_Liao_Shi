@@ -13,6 +13,7 @@ namespace level1 {
     }
 
     public class PlayerMovement : MonoBehaviour {
+        public static PlayerMovement shennong;
         // Outlet
         Rigidbody2D _rigidbody;
         Animator _animator;
@@ -35,16 +36,17 @@ namespace level1 {
         public Direction facingDirection;
         public int healthMax = 4;
         public int health = 4;
-        public GameScore instance;
 
+        void Awake() {
+            shennong = this;
+        }
 
         void Start() {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
-            instance = FindObjectOfType<GameScore>();
-
+ 
         }
 
         // Update is called once per frame
@@ -94,6 +96,7 @@ namespace level1 {
                 foreach (Collider2D hit in hits) {
                     ObstacleFlower obs = hit.GetComponent<ObstacleFlower>();
                     RewardFlower rwds = hit.GetComponent<RewardFlower>();
+                    ReachGoal rcgl = hit.GetComponent<ReachGoal>();
                     if(obs) {
                         if(Input.GetKeyDown(keyAttack)) {
                             obs.Break();
@@ -102,9 +105,17 @@ namespace level1 {
                     if(rwds) {
                         if(Input.GetKeyDown(keyAttack)) {
                             rwds.Break();
-                            instance.EarnPoints(rwds.rewardS);
+                            GameScore.instance.EarnPoints(rwds.rewardS);
                         }
                     }
+                    if(rcgl) {
+                        if(GameScore.instance.score >= ReachGoal.instance.goalScore) {
+                            print("Success!");
+                            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                            TimePause();
+                        }
+                    }
+
                 }
             }
         }
@@ -124,6 +135,16 @@ namespace level1 {
             }
         }
 
+        // void OnTriggerEnter2D(Collider2D other) {
+        //     if (other.gameObject.GetComponent<ReachGoal>()) {
+        //         if(Input.GetKeyDown(keyAttack)) {
+        //             if(GameScore.instance.score >= ReachGoal.instance.goalScore) {
+        //                 print("Success!");
+        //                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        //             }
+        //         }    
+        //     }
+        // }
 
         void Die() {
             _animator.SetTrigger("die");
@@ -138,6 +159,14 @@ namespace level1 {
                 Debug.Log("You're dead");
             }
             heart.SetHeartImage((HeartStatus)health);
+        }
+
+        void TimePause() {
+            Time.timeScale = 0;
+        }
+
+        void TimeUnpause() {
+            Time.timeScale = 1;
         }
     }
 }

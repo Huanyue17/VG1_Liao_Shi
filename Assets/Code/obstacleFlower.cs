@@ -8,20 +8,23 @@ namespace level1 {
         // Outlets
         PolygonCollider2D _pc;
         Animator _animator;
-        public PlayerMovement shennong;
+        //public PlayerMovement shennong;
         //private GameObject Target;
+        public float warningDistance = 0.1f;
 
         private void Start()
         {
             _pc = GetComponent<PolygonCollider2D>();
             _animator = GetComponent<Animator>();
-            shennong = FindObjectOfType<PlayerMovement>();
+            //PlayerMovement.shennong = FindObjectOfType<PlayerMovement>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            // if((shennong.transform.position - this.transform.position).sqrMagnitude < warningDistance) {
+            //     //GameScore.instance.EarnPoints(5);
+            // }
         }
 
         // when attacked by player
