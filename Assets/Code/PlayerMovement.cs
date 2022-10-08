@@ -20,6 +20,7 @@ namespace level1 {
         SpriteRenderer _spriteRenderer;
         public Transform[] attackZones;
         HealthHeart heart;
+        LevelDialog _levelDialog;
         //public TMP_Text textScore;
         // public Image imageHealth;
 
@@ -31,6 +32,7 @@ namespace level1 {
         public KeyCode keyAttack;
         public float moveSpeed;
         public Sprite[] sprites;
+
 
         // Tracking state
         public Direction facingDirection;
@@ -46,7 +48,8 @@ namespace level1 {
             _animator = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
- 
+            _levelDialog = LevelDialog.instance;
+
         }
 
         // Update is called once per frame
@@ -96,7 +99,7 @@ namespace level1 {
                 foreach (Collider2D hit in hits) {
                     ObstacleFlower obs = hit.GetComponent<ObstacleFlower>();
                     RewardFlower rwds = hit.GetComponent<RewardFlower>();
-                    ReachGoal rcgl = hit.GetComponent<ReachGoal>();
+
                     if(obs) {
                         if(Input.GetKeyDown(keyAttack)) {
                             obs.Break();
@@ -107,13 +110,6 @@ namespace level1 {
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
                             PlayerPrefs.SetInt("Score", GameScore.instance.score);
-                        }
-                    }
-                    if(rcgl) {
-                        if(GameScore.instance.score >= ReachGoal.instance.goalScore) {
-                            print("Success!");
-                            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                            TimePause();
                         }
                     }
 
@@ -134,6 +130,14 @@ namespace level1 {
             if (other.gameObject.GetComponent<ObstacleFlower>()) {
                 TakeDamage(1);
             }
+            if (GameScore.instance.score >= ReachGoal.instance.goalScore
+                && other.gameObject.GetComponent<ReachGoal>()) {
+                print("Success!");
+                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                TimePause();
+                _levelDialog.Success();
+            }
+
         }
 
         // void OnTriggerEnter2D(Collider2D other) {
@@ -143,13 +147,15 @@ namespace level1 {
         //                 print("Success!");
         //                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
         //             }
-        //         }    
+        //         }
         //     }
         // }
 
         void Die() {
             _animator.SetTrigger("die");
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            TimePause();
+            _levelDialog.Fail();
         }
 
         void TakeDamage(int damageAmount) {

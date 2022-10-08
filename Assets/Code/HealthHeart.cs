@@ -12,8 +12,7 @@ namespace level1 {
         Full = 4
     }
 
-    public class HealthHeart : MonoBehaviour
-    {
+    public class HealthHeart : MonoBehaviour {
         public Sprite fullHeart, threeQtrHeart, halfHeart, qtrHeart, emptyHeart;
         Image heartImage;
 
