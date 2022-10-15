@@ -100,13 +100,15 @@ namespace level1 {
                     ObstacleFlower obs = hit.GetComponent<ObstacleFlower>();
                     RewardFlower rwds = hit.GetComponent<RewardFlower>();
 
-                    if(obs) {
-                        if(Input.GetKeyDown(keyAttack)) {
+                    if (obs) {      // Hit obsticle, kill vine
+                        if (Input.GetKeyDown(keyAttack)) {
+                            SoundManager.instance.PlaySoundKill();
                             obs.Break();
                         }
                     }
-                    if(rwds) {
-                        if(Input.GetKeyDown(keyAttack)) {
+                    if(rwds) {      // Hit flower, add score
+                        if (Input.GetKeyDown(keyAttack)) {
+                            SoundManager.instance.PlaySoundScore();
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
                             PlayerPrefs.SetInt("Score", GameScore.instance.score);
@@ -119,7 +121,7 @@ namespace level1 {
 
         void LateUpdate() {
             for (int i = 0; i < sprites.Length; i++) {
-                if(_spriteRenderer.sprite == sprites[i]) {
+                if (_spriteRenderer.sprite == sprites[i]) {
                     facingDirection = (Direction)i;
                     break;
                 }
@@ -127,13 +129,16 @@ namespace level1 {
         }
 
         void OnCollisionEnter2D(Collision2D other) {
+            // Hit by vine
             if (other.gameObject.GetComponent<ObstacleFlower>()) {
+                SoundManager.instance.PlaySoundHitByVine();
                 TakeDamage(1);
             }
             if (GameScore.instance.score >= ReachGoal.instance.goalScore
                 && other.gameObject.GetComponent<ReachGoal>()) {
+                // SoundManager.instance.Play
                 print("Success!");
-                _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 TimePause();
                 _levelDialog.Success();
             }
@@ -152,10 +157,12 @@ namespace level1 {
         // }
 
         void Die() {
+            SoundManager.instance.PlaySoundGameOver();
             _animator.SetTrigger("die");
-            _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             TimePause();
             _levelDialog.Fail();
+
         }
 
         void TakeDamage(int damageAmount) {

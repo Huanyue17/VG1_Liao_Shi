@@ -16,7 +16,6 @@ namespace level1 {
 
         // Tracking state
         public int score;
-        public float seconds, minutes;
 
         void Awake() {
             instance = this;
@@ -24,21 +23,22 @@ namespace level1 {
 
         void Start() {
             score = 0;
-            seconds = 0f;
-            minutes = 0f;
-
             //score = PlayerPrefs.GetInt("Score");
         }
 
         // Update is called once per frame
         void Update() {
-            minutes = (int)(Time.time / 60f);
-            seconds = (int)(Time.time % 60f);
-            clockerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
             UpdateDisplay();
         }
 
+        public string GetTimeStr(float inputTime) {
+            int mm = (int)(inputTime / 60f);
+            int ss = (int)(inputTime % 60f);
+            return mm.ToString("00") + ":" + ss.ToString("00");
+        }
+
         void UpdateDisplay() {
+            clockerText.text = GetTimeStr(Time.timeSinceLevelLoad);
             textScore.text = score.ToString();
         }
 
