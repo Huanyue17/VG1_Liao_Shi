@@ -12,6 +12,7 @@ namespace level1 {
         Rigidbody2D _rigidbody;
         public TMP_Text textScore;
         public TMP_Text clockerText;
+        
         //public int goalScore;
 
         // Tracking state

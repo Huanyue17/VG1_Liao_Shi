@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5825562561021252697
 SpriteRenderer:
@@ -111,12 +111,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.375}
-      - {x: -0.375, y: -0.5}
-      - {x: 0.4375, y: -0.5}
-      - {x: 0.5, y: -0.4375}
-      - {x: 0.5, y: 0.5}
+    - - {x: 0.028805733, y: 0.36488175}
+      - {x: -0.26730156, y: 0.27532578}
+      - {x: -0.29939795, y: -0.19044614}
+      - {x: -0.19847059, y: -0.34353065}
+      - {x: 0.18072891, y: -0.34754252}
+      - {x: 0.29939795, y: -0.18072939}
+      - {x: 0.27532578, y: 0.29538608}
   m_UseDelaunayMesh: 0
 --- !u!114 &5825562561021252699
 MonoBehaviour:
@@ -130,5 +131,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771d35f876baf2f4bba073de7c7dcf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shennong: {fileID: 0}
   rewardS: 20
