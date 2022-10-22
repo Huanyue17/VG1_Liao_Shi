@@ -1778,9 +1778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c18a04d6678bbc43877094bfcf84e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleContent: {fileID: 833619079}
+  titleContent: {fileID: 1552578331}
   finalTime: {fileID: 1830591292}
-  seeds: []
+  seeds:
+  - {fileID: 861578255}
+  - {fileID: 1076355695}
+  - {fileID: 1133944492}
 --- !u!1 &246479623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,8 +1878,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2095210933}
-  - {fileID: 596973610}
   - {fileID: 1926015511}
+  - {fileID: 596973610}
   - {fileID: 214553685}
   m_Father: {fileID: 0}
   m_RootOrder: 7

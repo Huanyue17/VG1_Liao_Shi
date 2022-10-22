@@ -12,6 +12,8 @@ namespace level1 {
         public TMP_Text finalTime;
         public GameObject[] seeds;
         private int seedsCount;
+        private int curHealth;
+
 
         void Awake() {
             instance = this;
@@ -19,6 +21,7 @@ namespace level1 {
         }
 
         void Start() {
+            int curHealth = PlayerMovement.shennong.health;
         }
 
         // Update is called once per frame
@@ -26,23 +29,32 @@ namespace level1 {
             finalTime.text = GameScore.instance.GetTimeStr(Time.timeSinceLevelLoad);
         }
  
-        public int seedsCalculate() {
+        public void seedsAcheived(bool flag) {
             float usedTime = Time.timeSinceLevelLoad;
-            int count = 0;
-            if (usedTime < 200) count++;
-            if (usedTime < 150) count++;
-            if (usedTime < 90) count++;
-            return count;
+            for (int i = 0; i < 3; i++) {
+                seeds[i].SetActive(false);
+            }
+            if (usedTime < 200) {
+                seeds[0].SetActive(flag);
+            }
+            if (usedTime < 150) {
+                seeds[1].SetActive(flag);
+            }
+            if (   usedTime < 5) {
+                seeds[2].SetActive(flag);
+            }
         }
 
         public void Success() {
             titleContent.text = "Success";
             this.Show();
+            seedsAcheived(true);
         }
 
         public void Fail() {
             titleContent.text = "Fail";
             this.Show();
+            seedsAcheived(false);
         }
 
         public void Show() {
