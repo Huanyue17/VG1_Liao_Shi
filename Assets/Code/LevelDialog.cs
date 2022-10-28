@@ -28,7 +28,7 @@ namespace level1 {
         void Update() {
             finalTime.text = GameScore.instance.GetTimeStr(Time.timeSinceLevelLoad);
         }
- 
+
         public void seedsAcheived(bool flag) {
             float usedTime = Time.timeSinceLevelLoad;
             for (int i = 0; i < 3; i++) {
@@ -40,7 +40,7 @@ namespace level1 {
             if (usedTime < 150) {
                 seeds[1].SetActive(flag);
             }
-            if (   usedTime < 5) {
+            if (   usedTime < 100) {
                 seeds[2].SetActive(flag);
             }
         }

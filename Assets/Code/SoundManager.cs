@@ -12,6 +12,7 @@ namespace level1 {
         public AudioClip gameOverSound;
         public AudioClip hitByVineSound;
         public AudioClip killSound;
+        public AudioClip shootSound;
 
         void Awake() {
             instance = this;
@@ -35,6 +36,10 @@ namespace level1 {
 
         public void PlaySoundKill() {
             audiosource.PlayOneShot(killSound);
+        }
+
+        public void PlaySoundShoot() {
+            audiosource.PlayOneShot(shootSound);
         }
     }
 }

@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 1437198206789178787}
   - component: {fileID: 1437198206789178786}
   - component: {fileID: 1437198206789178785}
-  m_Layer: 0
+  - component: {fileID: 6320494302193508709}
+  - component: {fileID: 1400520423143515985}
+  m_Layer: 8
   m_Name: Lizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1437198206789178812
 SpriteRenderer:
@@ -149,13 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c55c83d4c4dd1145ad5fbbab3c3df36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AlphaTolerance: 29
+  AlphaTolerance: 30
   DistanceThreshold: 4
   Scale: 1
   Decompose: 0
   RunInPlayMode: 1
   UseCache: 1
-  lastAlphaTolerance: 29
+  lastAlphaTolerance: 30
   lastScale: 1
   lastDistanceThreshold: 4
   lastDecompose: 0
@@ -299,3 +301,36 @@ MonoBehaviour:
         - {x: 0.15625, y: -0.28125}
         - {x: -0.46875, y: 0.09375}
         - {x: -0.28125, y: -0.40625}
+--- !u!114 &6320494302193508709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437198206789178784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56fc682114a74662949c082ea382594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &1400520423143515985
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437198206789178784}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 50
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

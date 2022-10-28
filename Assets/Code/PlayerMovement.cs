@@ -17,12 +17,13 @@ namespace level1 {
         // Outlet
         Rigidbody2D _rigidbody;
         Animator _animator;
-        SpriteRenderer _spriteRenderer;
+        public SpriteRenderer _spriteRenderer;
         public Transform[] attackZones;
         HealthHeart heart;
         LevelDialog _levelDialog;
         //public TMP_Text textScore;
         // public Image imageHealth;
+        public GameObject projectilePrefab;
 
         // Configuration
         public KeyCode keyUp;
@@ -56,24 +57,34 @@ namespace level1 {
         void FixedUpdate() {
             // Move PLayer Left
             if (Input.GetKey(keyLeft)) {
-                _rigidbody.AddForce(Vector2.left * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                 _rigidbody.AddForce(Vector2.left * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.left* moveSpeed * Time.fixedDeltaTime);
+                facingDirection = (Direction)2;
+                _spriteRenderer.sprite = sprites[2];
             }
 
             // Move PLayer Right
             if (Input.GetKey(keyRight)) {
                 _rigidbody.AddForce(Vector2.right * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-
+                //transform.Translate(Vector2.right* moveSpeed * Time.fixedDeltaTime);
+                facingDirection = (Direction)3;
+                _spriteRenderer.sprite = sprites[3];
             }
 
             // Move PLayer Upward
             if (Input.GetKey(keyUp)) {
                 _rigidbody.AddForce(Vector2.up * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-
+                //transform.Translate(Vector2.up* moveSpeed * Time.fixedDeltaTime);
+                facingDirection = (Direction)0;
+                _spriteRenderer.sprite = sprites[0];
             }
 
             // Move PLayer Down
             if (Input.GetKey(keyDown)) {
                 _rigidbody.AddForce(Vector2.down * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.down* moveSpeed * Time.fixedDeltaTime);
+                facingDirection = (Direction)1;
+                _spriteRenderer.sprite = sprites[2];
             }
         }
 
@@ -88,6 +99,7 @@ namespace level1 {
 
                 if (Input.GetKeyDown(keyAttack)) {
                     _animator.SetTrigger("attack");
+                    FireProjectile();
                     // TakeDamage(1);
                 }
 
@@ -119,18 +131,27 @@ namespace level1 {
             }
         }
 
-        void LateUpdate() {
-            for (int i = 0; i < sprites.Length; i++) {
-                if (_spriteRenderer.sprite == sprites[i]) {
-                    facingDirection = (Direction)i;
-                    break;
-                }
-            }
+        // void LateUpdate() {
+        //     for (int i = 0; i < sprites.Length; i++) {
+        //         if (_spriteRenderer.sprite == sprites[i]) {
+        //             facingDirection = (Direction)i;
+        //             break;
+        //         }
+        //     }
+        // }
+
+        void FireProjectile() {
+            SoundManager.instance.PlaySoundShoot();
+            Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         }
 
         void OnCollisionEnter2D(Collision2D other) {
             // Hit by vine
             if (other.gameObject.GetComponent<ObstacleFlower>()) {
+                SoundManager.instance.PlaySoundHitByVine();
+                TakeDamage(1);
+            }
+            if (other.gameObject.GetComponent<LizardControl>()) {
                 SoundManager.instance.PlaySoundHitByVine();
                 TakeDamage(1);
             }
