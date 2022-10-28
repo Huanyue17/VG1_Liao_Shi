@@ -24480,6 +24480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3db630dee2f91d47be5983e915e0571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
   attackZones:
   - {fileID: 118291226}
   - {fileID: 1813736066}
@@ -24915,6 +24916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3db630dee2f91d47be5983e915e0571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
   attackZones: []
   projectilePrefab: {fileID: 0}
   keyUp: 119
@@ -25058,6 +25060,7 @@ MonoBehaviour:
   gameOverSound: {fileID: 8300000, guid: 263eb9bc33f8b6f439c22c688602ae57, type: 3}
   hitByVineSound: {fileID: 8300000, guid: 835c93469737b724e974db552f3201f3, type: 3}
   killSound: {fileID: 8300000, guid: 4c94bc4321767e841b43c506eb2364a1, type: 3}
+  shootSound: {fileID: 0}
 --- !u!82 &1844777609
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25236,6 +25239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3db630dee2f91d47be5983e915e0571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
   attackZones: []
   projectilePrefab: {fileID: 0}
   keyUp: 119
@@ -25828,6 +25832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3db630dee2f91d47be5983e915e0571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
   attackZones: []
   projectilePrefab: {fileID: 0}
   keyUp: 119

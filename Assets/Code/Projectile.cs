@@ -10,35 +10,42 @@ namespace level1 {
         public GameObject explosionPrefab;
         public float acceleration;
         public float maxTime;
+        //SpriteRenderer sprite;
+        
+        // tracking
         Vector2 oriLoc;
         float createT;
-        PlayerMovement shennong;
         Direction facing;
 
         void Start() {
             _rb = GetComponent<Rigidbody2D>();
+            //sprite = GetComponent<SpriteRenderer>();
             createT = Time.time;
-            shennong = PlayerMovement.shennong;
+            facing = FindObjectOfType<PlayerMovement>().facingDirection;
+            Vector3[] angles = {new Vector3(0, 0, 90), new Vector3(0, 0, 270), new Vector3(0, 180, 0), new Vector3(0, 0, 0)};
+            RotateProjectile((int)facing, angles);
         }
 
         // Update is called once per frame
         void Update() {
-            for (int i = 0; i < shennong.sprites.Length; i++) {
-                if (shennong._spriteRenderer.sprite == shennong.sprites[i]) {
-                    facing = (Direction)i;
-                    break;
-                }
-            }
-
+            //facing = FindObjectOfType<PlayerMovement>().facingDirection;
+            //facing = PlayerMovement.shennong.facingDirection;
             //Direction facing = PlayerMovement.shennong.facingDirection;
-            Debug.Log(facing);
+            //Debug.Log((int)facing);
             Vector2[] directions = {Vector2.up, Vector2.down, Vector2.left, Vector2.right};
-
+            // Vector3[] angles = {new Vector3(0, 270, 0), new Vector3(0, 90, 0), new Vector3(0, 180, 0), new Vector3(0, 0, 0)};
+            // RotateProjectile((int)facing, angles);
             if (Time.time - createT < maxTime) {
-                _rb.AddForce(Vector2.right * acceleration);
+                _rb.AddForce(directions[(int)facing] * acceleration);
+                
             } else {
                 Destroy(gameObject);
             }
+        }
+
+        void RotateProjectile(int dir, Vector3[] angles) {
+            Vector3 rotationToAdd = angles[dir];
+            transform.Rotate(rotationToAdd);
         }
 
         void OnCollisionEnter2D(Collision2D other) {
