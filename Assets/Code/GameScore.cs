@@ -12,7 +12,8 @@ namespace level1 {
         Rigidbody2D _rigidbody;
         public TMP_Text textScore;
         public TMP_Text clockerText;
-        
+        public TMP_Text bulletText;
+
         //public int goalScore;
 
         // Tracking state
@@ -41,6 +42,7 @@ namespace level1 {
         void UpdateDisplay() {
             clockerText.text = GetTimeStr(Time.timeSinceLevelLoad);
             textScore.text = score.ToString();
+            bulletText.text = PlayerMovement.shennong.bulletCount.ToString();
         }
 
         public void EarnPoints(int pointAmount) {

@@ -49,6 +49,9 @@ namespace level1 {
             }
 
         }
+        public void Break() {
+            Destroy(gameObject);
+        }
 
         void ChangeAnimationDirection() {
             float moveSpeed = _rb.velocity.sqrMagnitude;

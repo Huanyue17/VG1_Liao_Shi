@@ -11,7 +11,7 @@ namespace level1 {
         public float acceleration;
         public float maxTime;
         //SpriteRenderer sprite;
-        
+
         // tracking
         Vector2 oriLoc;
         float createT;
@@ -37,7 +37,6 @@ namespace level1 {
             // RotateProjectile((int)facing, angles);
             if (Time.time - createT < maxTime) {
                 _rb.AddForce(directions[(int)facing] * acceleration);
-                
             } else {
                 Destroy(gameObject);
             }
@@ -58,7 +57,7 @@ namespace level1 {
                 // Create an explosion and destroy it soon after
                 GameObject explosion = Instantiate(
                     explosionPrefab,
-                    transform.position,
+                    other.transform.position,
                     Quaternion.identity
                 );
                 Destroy(explosion, 0.25f);

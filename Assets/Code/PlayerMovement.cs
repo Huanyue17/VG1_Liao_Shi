@@ -34,11 +34,11 @@ namespace level1 {
         public float moveSpeed;
         public Sprite[] sprites;
 
-
         // Tracking state
         public Direction facingDirection;
         public int healthMax = 4;
         public int health = 4;
+        public int bulletCount = 0;
 
         void Awake() {
             shennong = this;
@@ -50,7 +50,6 @@ namespace level1 {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
             _levelDialog = LevelDialog.instance;
-
         }
 
         // Update is called once per frame
@@ -99,7 +98,9 @@ namespace level1 {
 
                 if (Input.GetKeyDown(keyAttack)) {
                     _animator.SetTrigger("attack");
-                    FireProjectile();
+                    if (bulletCount > 0) {
+                        FireProjectile();
+                    }
                     // TakeDamage(1);
                 }
 
@@ -111,22 +112,26 @@ namespace level1 {
                 foreach (Collider2D hit in hits) {
                     ObstacleFlower obs = hit.GetComponent<ObstacleFlower>();
                     RewardFlower rwds = hit.GetComponent<RewardFlower>();
+                    LizardControl lzd = hit.gameObject.GetComponent<LizardControl>();
 
                     if (obs) {      // Hit obsticle, kill vine
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             obs.Break();
                         }
-                    }
-                    if(rwds) {      // Hit flower, add score
+                    } else if (rwds) {      // Hit flower, add score
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundScore();
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
                             PlayerPrefs.SetInt("Score", GameScore.instance.score);
                         }
+                    } else if (lzd) {
+                        if (Input.GetKeyDown(keyAttack)) {
+                            SoundManager.instance.PlaySoundKill();
+                            lzd.Break();
+                        }
                     }
-
                 }
             }
         }
@@ -143,25 +148,36 @@ namespace level1 {
         void FireProjectile() {
             SoundManager.instance.PlaySoundShoot();
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+            bulletCount--;
         }
 
         void OnCollisionEnter2D(Collision2D other) {
+            ObstacleFlower obs = other.gameObject.GetComponent<ObstacleFlower>();
+            LizardControl lzd = other.gameObject.GetComponent<LizardControl>();
+            ReachGoal goal = other.gameObject.GetComponent<ReachGoal>();
+            RewardBullet blt = other.gameObject.GetComponent<RewardBullet>();
+
             // Hit by vine
-            if (other.gameObject.GetComponent<ObstacleFlower>()) {
+            if (obs) {
                 SoundManager.instance.PlaySoundHitByVine();
                 TakeDamage(1);
             }
-            if (other.gameObject.GetComponent<LizardControl>()) {
+            if (lzd) {
                 SoundManager.instance.PlaySoundHitByVine();
                 TakeDamage(1);
             }
-            if (GameScore.instance.score >= ReachGoal.instance.goalScore
-                && other.gameObject.GetComponent<ReachGoal>()) {
+            if (goal && GameScore.instance.score >= ReachGoal.instance.goalScore) {
                 // SoundManager.instance.Play
                 print("Success!");
+                SoundManager.instance.PlaySoundSuccess();
                 //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 TimePause();
                 _levelDialog.Success();
+            }
+            if (blt) {
+                SoundManager.instance.PlaySoundPowerUp();
+                bulletCount += 3;
+                blt.Break();
             }
 
         }
