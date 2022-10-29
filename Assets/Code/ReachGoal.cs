@@ -12,6 +12,16 @@ namespace level1 {
             instance = this;
         }
 
+        void OnTriggerEnter2D(Collider2D other) {
+            if (other.gameObject.GetComponent<PlayerMovement>()
+                && GameScore.instance.score >= goalScore) {
+                print("Success!");
+                SoundManager.instance.PlaySoundSuccess();
+                //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+                Time.timeScale = 0;
+                LevelDialog.instance.Success();
+            }
+        }
     }
 }
 

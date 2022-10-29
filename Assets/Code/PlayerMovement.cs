@@ -50,6 +50,7 @@ namespace level1 {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
             _levelDialog = LevelDialog.instance;
+            bulletCount = 0;
         }
 
         // Update is called once per frame
@@ -154,7 +155,7 @@ namespace level1 {
         void OnCollisionEnter2D(Collision2D other) {
             ObstacleFlower obs = other.gameObject.GetComponent<ObstacleFlower>();
             LizardControl lzd = other.gameObject.GetComponent<LizardControl>();
-            ReachGoal goal = other.gameObject.GetComponent<ReachGoal>();
+            // ReachGoal goal = other.gameObject.GetComponent<ReachGoal>();
             RewardBullet blt = other.gameObject.GetComponent<RewardBullet>();
 
             // Hit by vine
@@ -166,20 +167,19 @@ namespace level1 {
                 SoundManager.instance.PlaySoundHitByVine();
                 TakeDamage(1);
             }
-            if (goal && GameScore.instance.score >= ReachGoal.instance.goalScore) {
-                // SoundManager.instance.Play
-                print("Success!");
-                SoundManager.instance.PlaySoundSuccess();
-                //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-                TimePause();
-                _levelDialog.Success();
-            }
+            // if (goal && GameScore.instance.score >= ReachGoal.instance.goalScore) {
+            //     // SoundManager.instance.Play
+            //     print("Success!");
+            //     SoundManager.instance.PlaySoundSuccess();
+            //     //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            //     TimePause();
+            //     _levelDialog.Success();
+            // }
             if (blt) {
                 SoundManager.instance.PlaySoundPowerUp();
                 bulletCount += 3;
                 blt.Break();
             }
-
         }
 
         // void OnTriggerEnter2D(Collider2D other) {
