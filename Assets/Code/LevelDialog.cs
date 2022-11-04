@@ -68,5 +68,9 @@ namespace level1 {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Time.timeScale = 1;
         }
+
+        public void BackToMain() {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
