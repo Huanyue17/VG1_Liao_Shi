@@ -10,7 +10,7 @@ namespace level1 {
         Animator _animator;
         Vector2 directionToTarget;
 
-        public float acceleration;
+        public float accForce;
         public float maxSpeed;
         public float chaseDistance;
 
@@ -28,7 +28,7 @@ namespace level1 {
                 // Rotate towards target
                 directionToTarget = target.position - transform.position;
                 float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-                _rb.AddForce(directionToTarget * acceleration);
+                _rb.AddForce(directionToTarget * accForce);
                 _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
             }
             ChangeAnimationDirection();

@@ -8,7 +8,7 @@ namespace level1 {
         // outlets
         Rigidbody2D _rb;
         public GameObject explosionPrefab;
-        public float acceleration;
+        public float accForce;
         public float maxTime;
         //SpriteRenderer sprite;
 
@@ -36,7 +36,7 @@ namespace level1 {
             // Vector3[] angles = {new Vector3(0, 270, 0), new Vector3(0, 90, 0), new Vector3(0, 180, 0), new Vector3(0, 0, 0)};
             // RotateProjectile((int)facing, angles);
             if (Time.time - createT < maxTime) {
-                _rb.AddForce(directions[(int)facing] * acceleration);
+                _rb.AddForce(directions[(int)facing] * accForce);
             } else {
                 Destroy(gameObject);
             }

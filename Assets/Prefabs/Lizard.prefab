@@ -313,8 +313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c56fc682114a74662949c082ea382594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 4
-  maxSpeed: 5
+  accForce: 0.2
+  maxSpeed: 0.8
   chaseDistance: 15
 --- !u!50 &1400520423143515985
 Rigidbody2D:
@@ -328,8 +328,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 50
+  m_Mass: 0.1
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

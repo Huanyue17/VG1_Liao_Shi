@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 namespace MainUI
-{    
+{
     public class MainEvent : MonoBehaviour
     {
         public static MainEvent instance;
@@ -20,13 +20,13 @@ namespace MainUI
 
         void Start()
         {
-            
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            
+
         }
 
         void SwitchMenu(GameObject someMenu) {
@@ -53,6 +53,7 @@ namespace MainUI
 
         public void LoadLevel() {
             SceneManager.LoadScene("Level1");
+            Time.timeScale = 1;
         }
     }
 }

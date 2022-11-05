@@ -25190,7 +25190,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3
+  m_LinearDrag: 50
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -25222,7 +25222,8 @@ MonoBehaviour:
   keyLeft: 97
   keyRight: 100
   keyAttack: 32
-  moveSpeed: 9
+  keyBullet: 101
+  accForce: 150
   sprites:
   - {fileID: 1498292680, guid: ac7280aafb7bd3f4fa48a4e5e397e363, type: 3}
   - {fileID: -1987955942, guid: ac7280aafb7bd3f4fa48a4e5e397e363, type: 3}
@@ -26043,7 +26044,8 @@ MonoBehaviour:
   keyLeft: 97
   keyRight: 100
   keyAttack: 32
-  moveSpeed: 9
+  keyBullet: 0
+  accForce: 0
   sprites: []
   facingDirection: 0
   healthMax: 4

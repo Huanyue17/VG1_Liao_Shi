@@ -31,7 +31,8 @@ namespace level1 {
         public KeyCode keyLeft;
         public KeyCode keyRight;
         public KeyCode keyAttack;
-        public float moveSpeed;
+        public KeyCode keyBullet;
+        public float accForce;
         public Sprite[] sprites;
 
         // Tracking state
@@ -50,39 +51,38 @@ namespace level1 {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
             _levelDialog = LevelDialog.instance;
-            bulletCount = 0;
         }
 
         // Update is called once per frame
         void FixedUpdate() {
             // Move PLayer Left
             if (Input.GetKey(keyLeft)) {
-                 _rigidbody.AddForce(Vector2.left * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-                //transform.Translate(Vector2.left* moveSpeed * Time.fixedDeltaTime);
+                 _rigidbody.AddForce(Vector2.left * accForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.left* accForce * Time.fixedDeltaTime);
                 facingDirection = (Direction)2;
                 _spriteRenderer.sprite = sprites[2];
             }
 
             // Move PLayer Right
             if (Input.GetKey(keyRight)) {
-                _rigidbody.AddForce(Vector2.right * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-                //transform.Translate(Vector2.right* moveSpeed * Time.fixedDeltaTime);
+                _rigidbody.AddForce(Vector2.right * accForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.right* accForce * Time.fixedDeltaTime);
                 facingDirection = (Direction)3;
                 _spriteRenderer.sprite = sprites[3];
             }
 
             // Move PLayer Upward
             if (Input.GetKey(keyUp)) {
-                _rigidbody.AddForce(Vector2.up * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-                //transform.Translate(Vector2.up* moveSpeed * Time.fixedDeltaTime);
+                _rigidbody.AddForce(Vector2.up * accForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.up* accForce * Time.fixedDeltaTime);
                 facingDirection = (Direction)0;
                 _spriteRenderer.sprite = sprites[0];
             }
 
             // Move PLayer Down
             if (Input.GetKey(keyDown)) {
-                _rigidbody.AddForce(Vector2.down * moveSpeed * Time.fixedDeltaTime, ForceMode2D.Impulse);
-                //transform.Translate(Vector2.down* moveSpeed * Time.fixedDeltaTime);
+                _rigidbody.AddForce(Vector2.down * accForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+                //transform.Translate(Vector2.down* accForce * Time.fixedDeltaTime);
                 facingDirection = (Direction)1;
                 _spriteRenderer.sprite = sprites[2];
             }
@@ -96,12 +96,12 @@ namespace level1 {
                     _animator.SetFloat("movementX", _rigidbody.velocity.x);
                     _animator.SetFloat("movementY", _rigidbody.velocity.y);
                 }
-
                 if (Input.GetKeyDown(keyAttack)) {
                     _animator.SetTrigger("attack");
-                    if (bulletCount > 0) {
-                        FireProjectile();
-                    }
+                }
+                if (Input.GetKeyDown(keyBullet) && bulletCount > 0) {
+                    _animator.SetTrigger("attack");
+                    FireProjectile();
                     // TakeDamage(1);
                 }
 
