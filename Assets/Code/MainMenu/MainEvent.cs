@@ -13,6 +13,7 @@ namespace MainUI
         public GameObject mainMenu;
         public GameObject setMenu;
         public GameObject tutorMenu;
+        public GameObject audioMenu;
 
         void Awake() {
             instance = this;
@@ -34,6 +35,7 @@ namespace MainUI
             mainMenu.SetActive(false);
             setMenu.SetActive(false);
             tutorMenu.SetActive(false);
+            audioMenu.SetActive(false);
 
             // turn on requested menu
             someMenu.SetActive(true);
@@ -51,6 +53,10 @@ namespace MainUI
             SwitchMenu(tutorMenu);
         }
 
+        public void ShowAudioMenu() {
+            SwitchMenu(audioMenu);
+        }
+        
         public void LoadLevel() {
             SceneManager.LoadScene("Level1");
             Time.timeScale = 1;
