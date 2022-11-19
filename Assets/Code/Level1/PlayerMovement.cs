@@ -89,6 +89,7 @@ namespace level1 {
         }
 
         void Update() {
+            heart.SetHeartImage((HeartStatus)health);
             if (health > 0) {
                 float movementSpeed = _rigidbody.velocity.sqrMagnitude;
                 _animator.SetFloat("speed", movementSpeed);
@@ -157,6 +158,7 @@ namespace level1 {
             LizardControl lzd = other.gameObject.GetComponent<LizardControl>();
             // ReachGoal goal = other.gameObject.GetComponent<ReachGoal>();
             RewardBullet blt = other.gameObject.GetComponent<RewardBullet>();
+            RewardHealth hlt = other.gameObject.GetComponent<RewardHealth>();
 
             // Hit by vine
             if (obs) {
@@ -179,6 +181,11 @@ namespace level1 {
                 SoundManager.instance.PlaySoundPowerUp();
                 bulletCount += 3;
                 blt.Break();
+            }
+            if (hlt) {
+                SoundManager.instance.PlaySoundPowerUp();
+                health = health + 2 < 4 ? health + 2 : 4;
+                hlt.Break();
             }
         }
 
@@ -209,7 +216,7 @@ namespace level1 {
                 Die();
                 Debug.Log("You're dead");
             }
-            heart.SetHeartImage((HeartStatus)health);
+            // heart.SetHeartImage((HeartStatus)health);
         }
 
         void TimePause() {

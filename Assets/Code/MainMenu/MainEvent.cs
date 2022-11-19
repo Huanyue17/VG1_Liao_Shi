@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace MainUI
-{
-    public class MainEvent : MonoBehaviour
-    {
+namespace level1 {
+    public class MainEvent : MonoBehaviour {
         public static MainEvent instance;
         // Outlet
         public GameObject mainMenu;
+        public GameObject playMenu;
         public GameObject setMenu;
         public GameObject tutorMenu;
         public GameObject audioMenu;
@@ -36,13 +35,17 @@ namespace MainUI
             setMenu.SetActive(false);
             tutorMenu.SetActive(false);
             audioMenu.SetActive(false);
-
+            playMenu.SetActive(false);
             // turn on requested menu
             someMenu.SetActive(true);
         }
 
         public void ShowMainMenu() {
             SwitchMenu(mainMenu);
+        }
+
+        public void ShowPlayMenu() {
+            SwitchMenu(playMenu);
         }
 
         public void ShowSetMenu() {
@@ -56,9 +59,14 @@ namespace MainUI
         public void ShowAudioMenu() {
             SwitchMenu(audioMenu);
         }
-        
-        public void LoadLevel() {
+
+        public void LoadLevel1() {
             SceneManager.LoadScene("Level1");
+            Time.timeScale = 1;
+        }
+
+        public void LoadLevel2() {
+            SceneManager.LoadScene("Infinity");
             Time.timeScale = 1;
         }
     }

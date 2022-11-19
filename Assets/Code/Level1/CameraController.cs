@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-namespace level1 {
 
+namespace level1 {
     public class CameraController : MonoBehaviour
     {
         public Transform target;

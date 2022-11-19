@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MainUI
-    {
-    public class SoundManager : MonoBehaviour
-    {
+namespace level1 {
+    public class BGMManager : MonoBehaviour {
         [SerializeField] Slider volumeSlider;
 
         // Start is called before the first frame update
         void Start()
         {
-            if(!PlayerPrefs.HasKey("musicVolume")) {
+            if (!PlayerPrefs.HasKey("musicVolume")) {
                 PlayerPrefs.SetFloat("musicVolume", 1);
                 Load();
-            }
-            else {
+            } else {
                 Load();
             }
         }
@@ -24,7 +21,7 @@ namespace MainUI
         // Update is called once per frame
         void Update()
         {
-            
+
         }
 
         public void ChangeVolume() {
