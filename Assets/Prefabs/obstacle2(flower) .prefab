@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 685250693501860189}
   - component: {fileID: 685250693501860190}
   - component: {fileID: 685250693501860185}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: 'obstacle2(flower) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f26fd02bfcb584c81b440be5a1b59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shennong: {fileID: 0}
+  warningDistance: 0.1
 --- !u!114 &685250693501860185
 MonoBehaviour:
   m_ObjectHideFlags: 0

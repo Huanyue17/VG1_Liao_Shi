@@ -42,12 +42,13 @@ namespace level1 {
         void UpdateDisplay() {
             clockerText.text = GetTimeStr(Time.timeSinceLevelLoad);
             textScore.text = score.ToString();
-            bulletText.text = PlayerMovement.shennong.bulletCount.ToString();
+            //bulletText.text = PlayerMovement.shennong.BulletNum().ToString();
         }
 
         public void EarnPoints(int pointAmount) {
             score += pointAmount;
         }
+
     }
 }
 

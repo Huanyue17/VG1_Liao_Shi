@@ -51,6 +51,8 @@ namespace level1 {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             heart = FindObjectOfType<HealthHeart>();
             _levelDialog = LevelDialog.instance;
+            bulletCount = 0;
+            BulletNum(bulletCount);
         }
 
         // Update is called once per frame
@@ -90,6 +92,7 @@ namespace level1 {
 
         void Update() {
             heart.SetHeartImage((HeartStatus)health);
+            BulletNum(bulletCount);
             if (health > 0) {
                 float movementSpeed = _rigidbody.velocity.sqrMagnitude;
                 _animator.SetFloat("speed", movementSpeed);
@@ -120,6 +123,7 @@ namespace level1 {
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             obs.Break();
+                            GameController.instance.efNum--;
                         }
                     } else if (rwds) {      // Hit flower, add score
                         if (Input.GetKeyDown(keyAttack)) {
@@ -127,11 +131,13 @@ namespace level1 {
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
                             PlayerPrefs.SetInt("Score", GameScore.instance.score);
+                            GameController.instance.rfNum--;
                         }
                     } else if (lzd) {
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             lzd.Break();
+                            GameController.instance.animalsNum--;
                         }
                     }
                 }
@@ -151,6 +157,7 @@ namespace level1 {
             SoundManager.instance.PlaySoundShoot();
             Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             bulletCount--;
+            BulletNum(bulletCount);
         }
 
         void OnCollisionEnter2D(Collision2D other) {
@@ -180,12 +187,15 @@ namespace level1 {
             if (blt) {
                 SoundManager.instance.PlaySoundPowerUp();
                 bulletCount += 3;
+                BulletNum(bulletCount);
                 blt.Break();
+                GameController.instance.rewardsNum--;
             }
             if (hlt) {
                 SoundManager.instance.PlaySoundPowerUp();
                 health = health + 2 < 4 ? health + 2 : 4;
                 hlt.Break();
+                GameController.instance.rewardsNum--;
             }
         }
 
@@ -225,6 +235,11 @@ namespace level1 {
 
         void TimeUnpause() {
             Time.timeScale = 1;
+        }
+
+        public void BulletNum(int bc) {
+            GameScore.instance.bulletText.text = bc.ToString();
+            print("bullet count update: "+bc);
         }
     }
 }
