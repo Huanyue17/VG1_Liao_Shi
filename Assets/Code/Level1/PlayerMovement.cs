@@ -123,7 +123,10 @@ namespace level1 {
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             obs.Break();
-                            GameController.instance.efNum--;
+                            if (GameController.instance) {
+                                GameController.instance.efNum--;
+                                TrackEFTag(obs); 
+                            }
                         }
                     } else if (rwds) {      // Hit flower, add score
                         if (Input.GetKeyDown(keyAttack)) {
@@ -131,13 +134,19 @@ namespace level1 {
                             rwds.Break();
                             GameScore.instance.EarnPoints(rwds.rewardS);
                             PlayerPrefs.SetInt("Score", GameScore.instance.score);
-                            GameController.instance.rfNum--;
+                            if (GameController.instance) {
+                                GameController.instance.rfNum--;
+                                TrackRFTag(rwds);
+                            }
+                            
                         }
                     } else if (lzd) {
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             lzd.Break();
-                            GameController.instance.animalsNum--;
+                            if (GameController.instance) {
+                               GameController.instance.animalsNum--; 
+                            }
                         }
                     }
                 }
@@ -189,13 +198,21 @@ namespace level1 {
                 bulletCount += 3;
                 BulletNum(bulletCount);
                 blt.Break();
-                GameController.instance.rewardsNum--;
+                if (GameController.instance) {
+                    GameController.instance.rewardsNum--;
+                    TrackBltTag(blt);
+                }
+                
             }
             if (hlt) {
                 SoundManager.instance.PlaySoundPowerUp();
                 health = health + 2 < 4 ? health + 2 : 4;
                 hlt.Break();
-                GameController.instance.rewardsNum--;
+                if (GameController.instance) {
+                    GameController.instance.rewardsNum--;
+                    TrackHltTag(hlt);
+                }
+                
             }
         }
 
@@ -239,7 +256,52 @@ namespace level1 {
 
         public void BulletNum(int bc) {
             GameScore.instance.bulletText.text = bc.ToString();
-            print("bullet count update: "+bc);
+            //print("bullet count update: "+bc);
         }
+
+        void TrackRFTag(RewardFlower rf) {
+            string curTag = rf.tag;
+            if (curTag == "Untagged") return;
+            else {
+                int index = int.Parse(curTag.Substring(curTag.Length-1));
+                string type = curTag.Substring(0, curTag.Length-1);
+                print("The type of destroy item is : "+type+" The index is : "+index.ToString());
+                GameController.instance.RFOccupied[index] = false;
+            }
+        }
+
+        void TrackEFTag(ObstacleFlower ef) {
+            string curTag = ef.tag;
+            if (curTag == "Untagged") return;
+            else {
+                int index = int.Parse(curTag.Substring(curTag.Length-1));
+                string type = curTag.Substring(0, curTag.Length-1);
+                print("The type of destroy item is : "+type+" The index is : "+index.ToString());
+                GameController.instance.EFOccupied[index] = false;
+            }
+        }
+
+        void TrackHltTag(RewardHealth hlt) {
+            string curTag = hlt.tag;
+            if (curTag == "Untagged") return;
+            else {
+                int index = int.Parse(curTag.Substring(curTag.Length-1));
+                string type = curTag.Substring(0, curTag.Length-1);
+                print("The type of destroy item is : "+type+" The index is : "+index.ToString());
+                GameController.instance.RwdOccupied[index] = false;
+            }
+        }
+
+        void TrackBltTag(RewardBullet blt) {
+            string curTag = blt.tag;
+            if (curTag == "Untagged") return;
+            else {
+                int index = int.Parse(curTag.Substring(curTag.Length-1));
+                string type = curTag.Substring(0, curTag.Length-1);
+                print("The type of destroy item is : "+type+" The index is : "+index.ToString());
+                GameController.instance.RwdOccupied[index] = false;
+            }
+        }
+
     }
 }

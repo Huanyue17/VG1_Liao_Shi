@@ -93,8 +93,9 @@ namespace level1 {
                 GameObject randomEnemiesPrefab = efPrefabs[randomEnemiesIndex];
 
                 //spawn
-                Instantiate(randomEnemiesPrefab, randomSpawnPoint.position, Quaternion.identity);
+                GameObject newEF = Instantiate(randomEnemiesPrefab, randomSpawnPoint.position, Quaternion.identity);
                 // Debug.Log("Enamy flower idx: " + randomSpawnIndex + "occupied?" + EFOccupied[randomSpawnIndex]);
+                newEF.tag = "EF"+randomSpawnIndex.ToString();
                 EFOccupied[randomSpawnIndex] = true;
                 efNum++;
             }
@@ -109,7 +110,8 @@ namespace level1 {
                 GameObject randomRFPrefab = rfPrefabs[randomEnemiesIndex];
 
                 //spawn
-                Instantiate(randomRFPrefab, randomSpawnPoint.position, Quaternion.identity);
+                GameObject newRF = Instantiate(randomRFPrefab, randomSpawnPoint.position, Quaternion.identity);
+                newRF.tag = "RF"+randomSpawnIndex.ToString();
                 RFOccupied[randomSpawnIndex] = true;
                 rfNum++;
             }
@@ -124,7 +126,8 @@ namespace level1 {
                 GameObject randomRewardsPrefab = rewardPrefabs[randomRewardIndex];
 
                 //spawn
-                Instantiate(randomRewardsPrefab, randomSpawnPoint.position, Quaternion.identity);
+                GameObject newRwd = Instantiate(randomRewardsPrefab, randomSpawnPoint.position, Quaternion.identity);
+                newRwd.tag = "RWD"+randomSpawnIndex.ToString();
                 RwdOccupied[randomSpawnIndex] = true;
                 rewardsNum++;
             }
