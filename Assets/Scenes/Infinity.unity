@@ -248,10 +248,10 @@ MonoBehaviour:
   rewardPrefabs:
   - {fileID: 8441231488382389801, guid: e4d7e3abe8bfe4de185773e938eed35e, type: 3}
   - {fileID: 6080548205784984695, guid: d1cff0e2ce6734ea68e1dd0c887f1d53, type: 3}
-  maxEnemiesDelay: 10
-  minEnemiesDelay: 5
-  maxRewardDelay: 8
-  minRewardDelay: 3
+  maxEnemiesDelay: 15
+  minEnemiesDelay: 10
+  maxRewardDelay: 20
+  minRewardDelay: 5
   maxAnimalsNum: 3
   maxEFNum: 5
   maxRFNum: 5

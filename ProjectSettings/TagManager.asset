@@ -5,6 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - door
+  - RWD0
+  - RWD1
+  - RWD2
+  - EF0
+  - EF1
+  - EF2
+  - EF3
+  - RF0
+  - RF1
+  - RF2
+  - RF3
+  - RF4
   layers:
   - Default
   - TransparentFX
