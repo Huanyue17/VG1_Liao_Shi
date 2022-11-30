@@ -26,7 +26,12 @@ namespace level1 {
 
         // Update is called once per frame
         void Update() {
-            finalTime.text = GameScore.instance.GetTimeStr(Time.timeSinceLevelLoad);
+            if (GameController.instance) {
+                finalTime.text = GameScore.instance.score.ToString();;
+            }
+            else {
+                finalTime.text = GameScore.instance.GetTimeStr(Time.timeSinceLevelLoad);
+            }
         }
 
         public void seedsAcheived(bool flag) {
