@@ -32,6 +32,7 @@ namespace level1 {
         public KeyCode keyRight;
         public KeyCode keyAttack;
         public KeyCode keyBullet;
+        public KeyCode keyPause;
         public float accForce;
         public Sprite[] sprites;
 
@@ -40,6 +41,7 @@ namespace level1 {
         public int healthMax = 4;
         public int health = 4;
         public int bulletCount = 0;
+        public string area;
 
         void Awake() {
             shennong = this;
@@ -88,9 +90,16 @@ namespace level1 {
                 facingDirection = (Direction)1;
                 _spriteRenderer.sprite = sprites[2];
             }
+            // Paused menu
+            if (Input.GetKey(keyPause)) {
+                print("pause~~~~~");
+                PauseMenu.instance.gameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
 
         void Update() {
+            updateArea();
             heart.SetHeartImage((HeartStatus)health);
             BulletNum(bulletCount);
             if (health > 0) {
@@ -125,7 +134,7 @@ namespace level1 {
                             obs.Break();
                             if (GameController.instance) {
                                 GameController.instance.efNum--;
-                                TrackEFTag(obs); 
+                                TrackEFTag(obs);
                             }
                         }
                     } else if (rwds) {      // Hit flower, add score
@@ -138,14 +147,14 @@ namespace level1 {
                                 GameController.instance.rfNum--;
                                 TrackRFTag(rwds);
                             }
-                            
+
                         }
                     } else if (lzd) {
                         if (Input.GetKeyDown(keyAttack)) {
                             SoundManager.instance.PlaySoundKill();
                             lzd.Break();
                             if (GameController.instance) {
-                               GameController.instance.animalsNum--; 
+                               GameController.instance.animalsNum--;
                             }
                         }
                     }
@@ -202,7 +211,7 @@ namespace level1 {
                     GameController.instance.rewardsNum--;
                     TrackBltTag(blt);
                 }
-                
+
             }
             if (hlt) {
                 SoundManager.instance.PlaySoundPowerUp();
@@ -212,7 +221,7 @@ namespace level1 {
                     GameController.instance.rewardsNum--;
                     TrackHltTag(hlt);
                 }
-                
+
             }
         }
 
@@ -228,12 +237,12 @@ namespace level1 {
         // }
 
         void Die() {
+            SoundManager.instance.StopBGM();
             SoundManager.instance.PlaySoundGameOver();
             _animator.SetTrigger("die");
             //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             TimePause();
             _levelDialog.Fail();
-
         }
 
         void TakeDamage(int damageAmount) {
@@ -270,7 +279,7 @@ namespace level1 {
             }
         }
 
-        void TrackEFTag(ObstacleFlower ef) {
+        public void TrackEFTag(ObstacleFlower ef) {
             string curTag = ef.tag;
             if (curTag == "Untagged") return;
             else {
@@ -303,5 +312,12 @@ namespace level1 {
             }
         }
 
+        public void updateArea() {
+            if (this.transform.position.x > 16) {
+                SoundManager.instance.area = "desert";
+            } else {
+                SoundManager.instance.area = "village";
+            }
+        }
     }
 }

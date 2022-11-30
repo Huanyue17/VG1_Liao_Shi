@@ -4253,7 +4253,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7887,19 +7887,9 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 7, y: 9, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 6275aafe68cebb848a315c6c8e4a6667, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: e13c2c7b55d4c4c488e6b2283fcb522a, type: 2}
@@ -7908,7 +7898,7 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: 7ba72ef4017727847b68e2e0491e970f, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 11
+  - m_RefCount: 10
     m_Data: {fileID: 1275820637, guid: 1a1fe3f652409634fb01d658c8556a03, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: 58150058, guid: 1a1fe3f652409634fb01d658c8556a03, type: 3}
@@ -7917,7 +7907,7 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: 229855889, guid: 1a1fe3f652409634fb01d658c8556a03, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 29
+  - m_RefCount: 28
     m_Data:
       e00: 1
       e01: 0
@@ -7936,7 +7926,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 29
+  - m_RefCount: 28
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -8057,16 +8047,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Keyboard
-
-    WSAD: Moving Up, Down, Left, Right
-
-    E: Shoot bullet
-
-    SPACE:
-    Player interaction (Pick flower & Hit)
-
-'
+  m_text: "Keyboard\n\nWSAD: Up, Down, Left, Right\nE: Shoot bullet\nSPACE: Player
+    interaction\n                 (Pick flower/Hit)\nESC: Pause game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7cd0aae5f3ef24b3c912d7cecebfb72e, type: 2}
   m_sharedMaterial: {fileID: 4978394670449562415, guid: 7cd0aae5f3ef24b3c912d7cecebfb72e, type: 2}

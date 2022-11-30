@@ -8,8 +8,7 @@ namespace level1 {
         [SerializeField] Slider volumeSlider;
 
         // Start is called before the first frame update
-        void Start()
-        {
+        void Start() {
             if (!PlayerPrefs.HasKey("musicVolume")) {
                 PlayerPrefs.SetFloat("musicVolume", 1);
                 Load();
@@ -19,8 +18,7 @@ namespace level1 {
         }
 
         // Update is called once per frame
-        void Update()
-        {
+        void Update() {
 
         }
 

@@ -7,7 +7,10 @@ namespace level1 {
         public static SoundManager instance;
 
         // Outlets
+        public string area;
         AudioSource audiosource;
+        public AudioClip BGMVillage;
+        public AudioClip BGMDesert;
         public AudioClip scoreSound;
         public AudioClip gameOverSound;
         public AudioClip hitByVineSound;
@@ -22,6 +25,37 @@ namespace level1 {
 
         void Start() {
             audiosource = GetComponent<AudioSource>();
+            audiosource.clip = BGMVillage;
+            StartBGM();
+        }
+
+        void Update() {
+            SwitchBGM();
+            AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+        }
+
+        void SwitchBGM() {
+            if (area == "desert") {
+                if (audiosource.clip != BGMDesert) {
+                    audiosource.clip = BGMDesert;
+                    StartBGM();
+                }
+            } else {
+                if (audiosource.clip != BGMVillage) {
+                    audiosource.clip = BGMVillage;
+                    StartBGM();
+                }
+            }
+        }
+
+        public void StartBGM() {
+            // audiosource.enabled = true;
+            audiosource.Play();
+        }
+
+        public void StopBGM() {
+            audiosource.Stop();
+            // audiosource.enabled = false;
         }
 
         public void PlaySoundScore() {

@@ -66,7 +66,7 @@ Transform:
   m_Children:
   - {fileID: 2073485158848939133}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!212 &2073485158681800354
 SpriteRenderer:
@@ -166,6 +166,7 @@ MonoBehaviour:
   keyRight: 100
   keyAttack: 32
   keyBullet: 101
+  keyPause: 27
   accForce: 150
   sprites:
   - {fileID: 1498292680, guid: ac7280aafb7bd3f4fa48a4e5e397e363, type: 3}
@@ -176,6 +177,7 @@ MonoBehaviour:
   healthMax: 4
   health: 4
   bulletCount: 0
+  area: 
 --- !u!95 &2073485158681800363
 Animator:
   serializedVersion: 4

@@ -16,6 +16,7 @@ namespace level1 {
             if (other.gameObject.GetComponent<PlayerMovement>()
                 && GameScore.instance.score >= goalScore) {
                 print("Success!");
+                SoundManager.instance.StopBGM();
                 SoundManager.instance.PlaySoundSuccess();
                 //_rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
                 Time.timeScale = 0;

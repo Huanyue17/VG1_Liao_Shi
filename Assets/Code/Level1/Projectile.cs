@@ -50,14 +50,31 @@ namespace level1 {
         void OnCollisionEnter2D(Collision2D other) {
             Destroy(gameObject);
             // Only explode on Asteroids
-            if (other.gameObject.GetComponent<LizardControl>()
-                || other.gameObject.GetComponent<ObstacleFlower>()) {
+            ObstacleFlower obs = other.gameObject.GetComponent<ObstacleFlower>();
+            LizardControl lzd = other.gameObject.GetComponent<LizardControl>();
+
+            if (lzd || obs) {
+                if (obs && GameController.instance) {
+                    GameController.instance.efNum--;
+                    PlayerMovement.shennong.TrackEFTag(obs);
+
+                }
+                else if (lzd && GameController.instance) {
+                    GameController.instance.animalsNum--;
+                }
                 Destroy(other.gameObject);
 
                 // Create an explosion and destroy it soon after
                 GameObject explosion = Instantiate(
                     explosionPrefab,
                     other.transform.position,
+                    Quaternion.identity
+                );
+                Destroy(explosion, 0.25f);
+            } else {
+                GameObject explosion = Instantiate(
+                    explosionPrefab,
+                    this.transform.position,
                     Quaternion.identity
                 );
                 Destroy(explosion, 0.25f);

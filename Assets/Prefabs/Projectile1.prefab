@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 8843805449511186567, guid: 0c15c02dbc88d40b9b2fe17e33d2b320, type: 3}
-  accForce: 2
+  accForce: 6
   maxTime: 0.5
 --- !u!50 &2316615616351242465
 Rigidbody2D:

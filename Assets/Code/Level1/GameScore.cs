@@ -13,6 +13,7 @@ namespace level1 {
         public TMP_Text textScore;
         public TMP_Text clockerText;
         public TMP_Text bulletText;
+        public TMP_Text BackHomePrompt;
 
         //public int goalScore;
 
@@ -42,6 +43,9 @@ namespace level1 {
         void UpdateDisplay() {
             clockerText.text = GetTimeStr(Time.timeSinceLevelLoad);
             textScore.text = score.ToString();
+            if (score >= 100 && !GameController.instance) {
+                BackHomePrompt.gameObject.SetActive(true);
+            }
             //bulletText.text = PlayerMovement.shennong.BulletNum().ToString();
         }
 
