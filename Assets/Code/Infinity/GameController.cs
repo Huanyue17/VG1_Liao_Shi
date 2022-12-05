@@ -7,6 +7,7 @@ namespace level1 {
         public static GameController instance;
 
         // outlets
+        public GameObject explosionPrefab;
         public Transform[] SpawnAnimalsPoints;
         // Enemy Flowers
         public Transform[] spawnEFPoints;
@@ -80,6 +81,7 @@ namespace level1 {
             GameObject randomEnemiesPrefab = animalsPrefabs[randomEnemiesIndex];
 
             //spawn
+            Smoke(randomSpawnPoint);
             Instantiate(randomEnemiesPrefab, randomSpawnPoint.position, Quaternion.identity);
             animalsNum++;
         }
@@ -93,6 +95,7 @@ namespace level1 {
                 GameObject randomEnemiesPrefab = efPrefabs[randomEnemiesIndex];
 
                 //spawn
+                Smoke(randomSpawnPoint);
                 GameObject newEF = Instantiate(randomEnemiesPrefab, randomSpawnPoint.position, Quaternion.identity);
                 // Debug.Log("Enamy flower idx: " + randomSpawnIndex + "occupied?" + EFOccupied[randomSpawnIndex]);
                 newEF.tag = "EF"+randomSpawnIndex.ToString();
@@ -110,6 +113,7 @@ namespace level1 {
                 GameObject randomRFPrefab = rfPrefabs[randomEnemiesIndex];
 
                 //spawn
+                Smoke(randomSpawnPoint);
                 GameObject newRF = Instantiate(randomRFPrefab, randomSpawnPoint.position, Quaternion.identity);
                 newRF.tag = "RF"+randomSpawnIndex.ToString();
                 RFOccupied[randomSpawnIndex] = true;
@@ -126,6 +130,7 @@ namespace level1 {
                 GameObject randomRewardsPrefab = rewardPrefabs[randomRewardIndex];
 
                 //spawn
+                Smoke(randomSpawnPoint);
                 GameObject newRwd = Instantiate(randomRewardsPrefab, randomSpawnPoint.position, Quaternion.identity);
                 newRwd.tag = "RWD"+randomSpawnIndex.ToString();
                 RwdOccupied[randomSpawnIndex] = true;
@@ -175,5 +180,13 @@ namespace level1 {
             StartCoroutine("SpawnRFTimer");
         }
 
+        void Smoke(Transform spawnPoint) {
+            GameObject explosion = Instantiate(
+                explosionPrefab,
+                spawnPoint.position,
+                Quaternion.identity
+            );
+            Destroy(explosion, 0.25f);
+        }
     }
 }

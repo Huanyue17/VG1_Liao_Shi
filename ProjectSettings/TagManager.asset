@@ -17,6 +17,15 @@ TagManager:
   - RF2
   - RF3
   - RF4
+  - EF4
+  - EF5
+  - EF6
+  - RF5
+  - RF6
+  - RF7
+  - RF8
+  - RF9
+  - RWD3
   layers:
   - Default
   - TransparentFX
